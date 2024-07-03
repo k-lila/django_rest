@@ -21,7 +21,7 @@ class TestProductViewSet(APITestCase):
     def test_get_all_product(self):
         response = self.client.get(reverse("product-list", kwargs={"version": "v1"}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        product_data = json.loads(response.content)
+        product_data = json.loads(response.content)["results"]
         self.assertEqual(product_data[0]["title"], self.product.title)
         self.assertEqual(product_data[0]["price"], self.product.price)
         self.assertEqual(product_data[0]["active"], self.product.active)
@@ -48,7 +48,7 @@ class TestProductViewSet(APITestCase):
     def test_get_product(self):
         response = self.client.get(reverse("product-list", kwargs={"version": "v1"}))
         product_data = json.loads(response.content)
-        self.assertEqual(product_data[0]["title"], self.product.title)
+        self.assertEqual(product_data["results"][0]["title"], self.product.title)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_delete_product(self):
