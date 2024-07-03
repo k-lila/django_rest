@@ -20,7 +20,7 @@ class TestCategoryViewSet(APITestCase):
         response = self.client.get(reverse("category-list", kwargs={"version": "v1"}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         category_data = json.loads(response.content)
-        self.assertEqual(category_data[0]["title"], self.category.title)
+        self.assertEqual(category_data["results"][0]["title"], self.category.title)
 
     def test_create_category(self):
         data = json.dumps({"title": "test"})
@@ -36,7 +36,7 @@ class TestCategoryViewSet(APITestCase):
     def test_get_category(self):
         response = self.client.get(reverse("category-list", kwargs={"version": "v1"}))
         category_data = json.loads(response.content)
-        self.assertEqual(category_data[0]["slug"], self.category.slug)
+        self.assertEqual(category_data["results"][0]["slug"], self.category.slug)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_delete_category(self):
