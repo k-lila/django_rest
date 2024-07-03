@@ -42,4 +42,17 @@ class TestOrderViewSet(APITestCase):
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # created_order = Order.objects.get(user=user)
+
+    def test_get_order(self):
+        response = self.client.get(reverse("order-list", kwargs={"version": "v1"}))
+        order_data = json.loads(response.content)
+        response_product_id = order_data[0]["product"][0]["id"]
+        product_id = list(self.order.product.values_list("id", flat=True))[0]
+        self.assertEqual(response_product_id, product_id)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_delete_order(self):
+        response = self.client.delete(
+            reverse("order-detail", kwargs={"version": "v1", "pk": self.order.id})
+        )
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
