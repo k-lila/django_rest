@@ -26,12 +26,14 @@ RUN pip install poetry
 RUN poetry init
 
 RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
+    && apt-get -y install libpq-dev gcc 
+
+RUN poetry add psycopg2
 
 WORKDIR $PYSETUP_PATH
 
 COPY poetry.lock pyproject.toml ./
+
 
 RUN poetry install --no-dev
 
