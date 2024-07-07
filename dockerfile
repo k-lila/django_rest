@@ -34,7 +34,6 @@ WORKDIR $PYSETUP_PATH
 
 COPY poetry.lock pyproject.toml ./
 
-
 RUN poetry install --no-dev
 
 RUN poetry install
