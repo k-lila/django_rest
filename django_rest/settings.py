@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -92,6 +95,10 @@ DATABASES = {
     }
 }
 
+# DATABASES["default"] = dj_database_url.parse(
+#     "postgresql://user:uYssO78yPqoh4LqIfdWmlGC6Hs21TPcG@dpg-cq4uc4g8fa8c73fv6slg-a.oregon-postgres.render.com/bookstore_db_llv5"
+# )
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -155,6 +162,6 @@ REST_FRAMEWORK = {
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "foo")
 
-# DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = int(os.environ.get("DEBUG", 1))
 
-ALLOWED_HOSTS = ["ebac-bookstore-api.onrender.com", "localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["ebac-bookstore-api.onrender.com", "localhost"]
