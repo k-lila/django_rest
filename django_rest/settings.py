@@ -92,7 +92,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -154,7 +153,7 @@ REST_FRAMEWORK = {
 }
 
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "foo")
 
 # DEBUG = int(os.environ.get("DEBUG", default=0))
 
