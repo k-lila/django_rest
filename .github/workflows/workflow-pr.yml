@@ -1,10 +1,9 @@
 name: Python Pull Request Workflow
 on: [pull_request]
 jobs:
-
   qa:
     name: Quality check
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python
@@ -18,14 +17,11 @@ jobs:
           poetry install
         env:
           POETRY_VIRTUALENVS_CREATE: false
-
       - name: View poetry --help
         run: poetry --help
-
       - name: Install dependencies
         shell: bash
         run: python -m poetry install
-
       - name: Test
         run: |
           poetry run python manage.py test

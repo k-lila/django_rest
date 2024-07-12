@@ -21,11 +21,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
+      - POSTGRES_USER=postgre
+      - POSTGRES_PASSWORD=postgre
       - POSTGRES_DB=bookstore_db
     networks:
       - backend
+
 networks:
   backend:
     driver: bridge
